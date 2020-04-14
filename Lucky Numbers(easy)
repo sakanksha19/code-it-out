@@ -1,0 +1,29 @@
+#include <iostream>
+#include<string.h>
+#include<algorithm>
+using namespace std;
+
+int main() {
+	string s=" ";
+	int n;
+	cin>>n;
+	while(1)
+	{
+		s=s+"47";
+		sort(s.begin(),s.end());
+		if(stoll(s)>=n)
+		{
+			cout<<s;
+			break;
+		}
+			while(next_permutation(s.begin(),s.end()))
+			{
+				if(stoll(s)>=n)
+				{
+					cout<<s;
+					return 0;
+				}
+			}
+	}
+	return 0;
+}
