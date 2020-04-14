@@ -1,0 +1,28 @@
+#include<iostream>
+using namespace std;
+int main()
+{
+    int t,n,m;
+    cin>>t;
+    while(t--)
+    {
+        cin>>n>>m;
+        long long int c[m+n+1][n+1];
+        for(int i=0;i<=(m+n);i++)
+        {
+            for(int j=0;j<=min(i,n);j++)
+            {
+                if(j==0 || j==i)
+                {
+                    c[i][j]=1%1000000007;
+                }
+                else
+                {
+                    c[i][j]=(c[i-1][j-1]%1000000007+c[i-1][j]%1000000007)%1000000007;
+                }
+            }
+        }
+        cout<<(c[m+n][n])<<"\n";
+    }
+    return 0;
+}
