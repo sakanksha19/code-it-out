@@ -1,0 +1,90 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	int n;
+	vector<int>v;
+	vector<char>v1;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	int i=0,j=n-1;
+	while(i<n,j>=0)
+	{
+		if(v.empty())
+		{
+			if(a[i]<a[j])
+			{
+				v.push_back(a[i]);
+				v1.push_back('L');
+				i++;
+			}
+			else
+			{
+				v.push_back(a[j]);
+				v1.push_back('R');
+				j--;
+			}
+		}
+		else
+		{
+			if(a[i]<a[j])
+			{
+				if(a[i]>v.back())
+				{
+					v.push_back(a[i]);
+					v1.push_back('L');
+					i++;
+				}
+				else if(a[i]<v.back() && a[j]>v.back())
+				{
+					v.push_back(a[j]);
+					v1.push_back('R');
+					j--;
+				}
+				else
+				{
+					break;
+				}
+			}
+			else if(a[i]>a[j])
+			{
+				if(a[j]>v.back())
+				{
+					v.push_back(a[j]);
+					v1.push_back('R');
+					j--;
+				}
+				else if(a[j]<v.back() && a[i]>v.back())
+				{
+					v.push_back(a[i]);
+					v1.push_back('L');
+					i++;
+				}
+				else
+				break;
+			}
+			else
+			{
+				if(a[i]>v.back())
+				{
+					v1.push_back('L');
+					break;
+				}
+				else
+				break;
+			}
+		}
+	}
+	int l=v1.size();
+	cout<<l<<"\n";
+	for(int k=0;k<l;k++)
+	{
+		cout<<v1[k];
+	}
+	return 0;
+}
