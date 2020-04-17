@@ -1,0 +1,204 @@
+#include <iostream>
+#include<vector>
+using namespace std;
+
+int main() {
+	int n;
+	vector<int>v;
+	vector<int>v3;
+	vector<char>v1;
+	vector<char>v2;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+		cin>>a[i];
+	}
+	if(n==1)
+	{
+		cout<<"1\n";
+		cout<<"R";
+	}
+	else
+	{
+	int i=0,j=n-1;
+	while(i<n,j>=0)
+	{
+		if(v.empty())
+		{
+			if(a[i]<a[j])
+			{
+				v.push_back(a[i]);
+				v1.push_back('L');
+				i++;
+			}
+			else if(a[j]<a[i])
+			{
+				v.push_back(a[j]);
+				v1.push_back('R');
+				j--;
+			}
+			else if(a[i]==a[j])
+			{
+				v.push_back(a[j]);
+				v1.push_back('R');
+				j--;
+			}
+		}
+		else
+		{
+			if(a[i]<a[j])
+			{
+				if(a[i]>v.back())
+				{
+					v.push_back(a[i]);
+					v1.push_back('L');
+					i++;
+				}
+				else if(a[i]<=v.back() && a[j]>v.back())
+				{
+					v.push_back(a[j]);
+					v1.push_back('R');
+					j--;
+				}
+				else
+				{
+					break;
+				}
+			}
+			else if(a[i]>a[j])
+			{
+				if(a[j]>v.back())
+				{
+					v.push_back(a[j]);
+					v1.push_back('R');
+					j--;
+				}
+				else if(a[j]<=v.back() && a[i]>v.back())
+				{
+					v.push_back(a[i]);
+					v1.push_back('L');
+					i++;
+				}
+				else
+				break;
+			}
+			else if(a[i]==a[j] && i!=j && a[j]>v.back())
+			{
+				v.push_back(a[j]);
+				v1.push_back('R');
+				j--;
+			}
+			else 
+			{
+				if(a[i]>v.back())
+				{
+					v1.push_back('R');
+					break;
+				}
+				else
+				break;
+			}
+		}
+	}
+	int x=0,y=n-1;
+	while(x<n,y>=0)
+	{
+		if(v3.empty())
+		{
+			if(a[x]<a[y])
+			{
+				v3.push_back(a[x]);
+				v2.push_back('L');
+				x++;
+			}
+			else if(a[y]<a[x])
+			{
+				v3.push_back(a[y]);
+				v2.push_back('R');
+				y--;
+			}
+			else if(a[x]==a[y])
+			{
+				v3.push_back(a[x]);
+				v2.push_back('L');
+				x++;
+			}
+		}
+		else
+		{
+			if(a[x]<a[y])
+			{
+				if(a[x]>v3.back())
+				{
+					v3.push_back(a[x]);
+					v2.push_back('L');
+					x++;
+				}
+				else if(a[x]<=v3.back() && a[y]>v3.back())
+				{
+					v3.push_back(a[y]);
+					v2.push_back('R');
+					y--;
+				}
+				else
+				{
+					break;
+				}
+			}
+			else if(a[x]>a[y])
+			{
+				if(a[y]>v3.back())
+				{
+					v3.push_back(a[y]);
+					v2.push_back('R');
+					y--;
+				}
+				else if(a[y]<=v3.back() && a[x]>v3.back())
+				{
+					v3.push_back(a[x]);
+					v2.push_back('L');
+					x++;
+				}
+				else
+				break;
+			}
+			else if(a[x]==a[y] && x!=y && a[y]>v3.back())
+			{
+				v3.push_back(a[x]);
+				v2.push_back('L');
+				x++;
+			}
+			else 
+			{
+				if(a[x]>v3.back())
+				{
+					v2.push_back('R');
+					break;
+				}
+				else
+				break;
+			}
+		}
+	}
+	int l=v1.size();
+	int l1=v2.size();
+	if(l>=l1)
+	{
+	   cout<<l<<"\n";
+	   for(int k=0;k<l;k++)
+	   {
+		  cout<<v1[k];
+	   }
+	}
+	else
+	{
+		cout<<l1<<"\n";
+		for(int k=0;k<l1;k++)
+		{
+			cout<<v2[k];
+		}
+	}
+	}
+	return 0;
+}
