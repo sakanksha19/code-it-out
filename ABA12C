@@ -1,0 +1,42 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int t,n,k,m=1000000000,max;
+	cin>>t;
+	while(t--)
+	{
+		cin>>n>>k;
+		int a[k+1];
+		for(int i=1;i<k+1;i++)
+		{
+			cin>>a[i];
+		}
+		int b[k+1][k+1];
+		for(int i=0;i<k+1;i++)
+		{
+			max=m;
+			for(int j=0;j<k+1;j++)
+			{
+				if(i==0 || j==0)
+				b[i][j]=0;
+				else if(i<j || a[j]==-1)
+				{
+					b[i][j]=max;
+				}
+				else
+				{
+					int g=i/j;
+					int h=i%j;
+					b[i][j]=min(g*a[j]+b[h][j],max);
+					max=b[i][j];
+				}
+			}
+		}
+		if(b[k][k]==m)
+		cout<<"-1\n";
+		else
+		cout<<b[k][k]<<"\n";
+	}
+	return 0;
+}
