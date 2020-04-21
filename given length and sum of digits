@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int m,s,sum;
+	cin>>m>>s;
+	int a[m],b[m];
+	if((s==0 && m>1) || s>9*m)
+	{
+		cout<<"-1"<<" "<<"-1";
+	}
+    else
+	{ 
+		sum=s;
+	int i=9,j=0;
+	while(j<m)
+	{
+		if(s>=i)
+		{
+			a[j]=i;
+			j++;
+			s=s-i;
+			i=9;
+		}
+		else
+		i--;
+	}
+	 int k=m-1,l=9;
+	 while(k>=0)
+	 {
+	 	if(sum>=l && sum!=1)
+	 	{
+	 		if((sum-l)==0 && k!=0)
+	 		{
+	 			b[k]=l-1;
+	 			sum=sum-l+1;
+	 			k--;
+	 			l=9;
+	 		}
+	 		else
+	 		{
+	 			b[k]=l;
+	 			sum=sum-l;
+	 			k--;
+	 			l=9;
+	 		}
+	 	}
+	 	else if(sum<l && sum!=1)
+	 	l--;
+	 	else if(sum==1)
+	 	break;
+	 }
+	 if(sum==1)
+	 {
+	 	b[0]=1;
+	 	for(int x=1;x<=k;x++)
+	 	{
+	 		b[x]=0;
+	 	}
+	 }
+	 for(int x=0;x<m;x++)
+	 {
+	 	cout<<b[x];
+	 }
+	 cout<<" ";
+	 for(int x=0;x<m;x++)
+	 {
+	 	cout<<a[x];
+	 }
+	}
+	return 0;
+}
