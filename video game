@@ -1,0 +1,58 @@
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+int main()
+{
+    int n,h,x,l;
+    stack<int>s;
+    vector<int>v;
+    cin>>n>>h;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    while(1)
+    {
+        cin>>x;
+        if(x==0)
+        break;
+        else
+        v.push_back(x);
+    }
+    l=v.size();
+    int i=0,j=0;
+    while(i<l)
+    {
+        if((v[i]==1) && j!=0)
+        {
+            j=j-1;
+            i++;
+        }
+        else if((v[i]==2) && j!=(n-1))
+        {
+            j=j+1;
+            i++;
+        }
+        else if((v[i]==3) && s.empty() && a[j]!=0)
+        {
+            a[j]=a[j]-1;
+            s.push(1);
+            i++;
+        }
+        else if((v[i]==4) && !s.empty() && a[j]<h)
+        {
+            a[j]=a[j]+1;
+            s.pop();
+            i++;
+        }
+        else
+        i++;
+    }
+    for(int k=0;k<n;k++)
+    {
+        cout<<a[k]<<" ";
+    }
+    return 0;
+}
