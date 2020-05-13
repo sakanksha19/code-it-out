@@ -1,0 +1,43 @@
+#include<iostream>
+using namespace std;
+struct ps
+{
+    long long int x,y,g;
+};
+ps egcd(long long int a,long long int b)
+{
+    if(b==0)
+    {
+        ps ans;
+        ans.g=a;
+        ans.y=0;
+        ans.x=1;
+        return ans;
+    }
+    else
+    {
+        ps small=egcd(b,a%b);
+        ps ans;
+        ans.g=small.g;
+        ans.x=small.y;
+        ans.y=small.x-((a/b)*small.y);
+        return ans;
+    }
+}
+long long int mod(long long int b,long long int m)
+{
+    ps ans=egcd(b,m);
+    if(ans.g!=1)
+    return -1;
+    else
+    return (ans.x+m)%m;
+}
+int main()
+{
+  long long int b,m,c;
+  cin>>b;
+  m=1000000007;
+  c=mod(b,m);
+  cout<<c;
+  return 0;
+}
