@@ -1,0 +1,146 @@
+#include <iostream>
+#include<string.h>
+using namespace std;
+
+int main() {
+	int c,l,c1,c2,l1;
+	string s;
+	cin>>s;
+	char a[2][13],s1;
+	for(int i=0;i<26;i++)
+	{
+		for(int j=i+1;j<27;j++)
+		{
+			if(s[i]==s[j])
+			{
+				s1=s[i];
+				c=(j-i)-1;
+				c1=i;
+				c2=j;
+			}
+		}
+	}
+	if(c==0)
+	cout<<"Impossible";
+	else
+	{
+	 if(c%2==0)
+	{
+		l=12-(c/2);
+		a[0][l]=s1;
+		if(l>=c1)
+		{
+		for(int i=(c1-1),j=l-1;i>=0;i--,j--)
+		{
+			a[1][j]=s[i];
+		}
+			a[1][l]=s[c2+1];
+			for(int i=(c2+2),j=l-1;j>=0 && i<27;j--,i++)
+	        {
+			   a[0][j]=s[i];
+		    }
+	    	for(int j=0,i=(c2+2+l);i<27;i++,j++)
+	    	{
+			   a[1][j]=s[i];
+		    }
+		}
+		else if(l<c1)
+		{
+			if(c1%2!=0 && c1<7 || (c1%2!=0 && c1>20))
+			{
+				for(int i=(c1-1),j=l;j>=0;i--,j--)
+				{
+					a[1][j]=s[i];
+				}
+				for(int j=0,i=(c1-l-2);i>=0;j++,i--)
+				{
+					a[0][j]=s[i];
+				}
+				for(int i=(c2+1),j=l-1;j>=0 && i<27;j--,i++)
+	        	{
+			       a[0][j]=s[i];
+		        }
+		        for(int j=0,i=(c2+1+l);i<27;i++,j++)
+		        {
+			       a[1][j]=s[i];
+		        }
+			}
+			else
+			{
+			for(int i=(c1-1),j=l-1;j>=0;j--,i--)
+			{
+				a[1][j]=s[i];
+			}
+			for(int j=0,i=(c1-l-1);i>=0;i--,j++)
+			{
+				a[0][j]=s[i];
+			}
+			a[1][l]=s[c2+1];
+			for(int i=(c2+2),j=l-1;j>=0 && i<27;j--,i++)
+	        {
+			   a[0][j]=s[i];
+		    }
+	    	for(int j=0,i=(c2+2+l);i<27;i++,j++)
+	    	{
+			   a[1][j]=s[i];
+		    }
+			}
+		}
+		for(int i=(c1+1),j=l+1;i<=(c1+c/2);i++,j++)
+		{
+			a[0][j]=s[i];
+		}
+		for(int i=(c1+(c/2)+1),j=12;j>=(l+1);j--,i++)
+		{
+			a[1][j]=s[i];
+		}
+	}
+	else if(c%2!=0)
+	{
+		l=12-(c/2);
+		a[0][l]=s1;
+		if(l>=c1)
+		{
+		for(int i=(c1-1),j=l-1;i>=0;i--,j--)
+		{
+			a[1][j]=s[i];
+		}}
+		else
+		{
+			for(int i=(c1-1),j=l-1;j>=0;j--,i--)
+			{
+				a[1][j]=s[i];
+			}
+			for(int j=0,i=(c1-l-1);i>=0;i--,j++)
+			{
+				a[0][j]=s[i];
+			}
+		}
+		for(int i=(c1+1),j=l+1;i<=(c1+c/2);i++,j++)
+		{
+			a[0][j]=s[i];
+		}
+		for(int i=(c1+(c/2)+1),j=12;j>=l;j--,i++)
+		{
+			a[1][j]=s[i];
+		}
+		for(int i=(c2+1),j=l-1;j>=0 && i<27;j--,i++)
+		{
+			a[0][j]=s[i];
+		}
+		for(int j=0,i=(c2+1+l);i<27;i++,j++)
+		{
+			a[1][j]=s[i];
+		}
+	}
+	for(int i=0;i<2;i++)
+	{
+		for(int j=0;j<13;j++)
+		{
+			cout<<a[i][j];
+		}
+		cout<<"\n";
+	}
+	}
+	return 0;
+}
