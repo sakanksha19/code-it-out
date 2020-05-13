@@ -1,0 +1,17 @@
+#include <iostream>
+#include<math.h>
+using namespace std;
+
+int main() {
+	long long int n,m;
+	long double a,b,sum=0;
+	cin>>m>>n;
+	for(long double i=1;i<=m;i++)
+	{
+		a=i/m;
+		b=(i-1)/m;
+		sum=sum+i*(pow(a,n)-pow(b,n));
+	}
+	cout<<sum;
+	return 0;
+}
